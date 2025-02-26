@@ -26,16 +26,19 @@ class VideoPlayer(QMainWindow):
         self.main_layout = QVBoxLayout(self.central_widget)
 
         # ビデオウィジェットをレイアウトに追加
-        self.layout.addWidget(self.video_widget)
+        self.main_layout.addWidget(self.video_widget)
+        
         # ボタン
         self.open_button1 = QPushButton("フォルダを開く", self)
         self.open_button1.clicked.connect(self.open_folder)
-        self.layout.addWidget(self.open_button1)
+        self.main_layout.addWidget(self.open_button1)
+
+        # ボタンレイアウトの作成
+        self.button_layout = QHBoxLayout()
 
         prev_button = QPushButton("前", self)
         prev_button.clicked.connect(self.ago)
         
-
         next_button = QPushButton("次", self)
         next_button.clicked.connect(self.next)
 
@@ -45,7 +48,7 @@ class VideoPlayer(QMainWindow):
         self.files_and_dirs = []
         self.NUM = 0
         self.text_var = QLabel(self)
-        self.layout.addWidget(self.text_var)
+        self.main_layout.addWidget(self.text_var)
         self.main_layout.addLayout(self.button_layout)
 
     def play_video(self, video_path):
